@@ -90,7 +90,7 @@ def jogo():
 
     while True:
 
-        niveis_tabuleiro(nivel, tabu, revelar_minas=True)
+        niveis_tabuleiro(nivel, tabu_atual)
 
         try:
             linha = int(input('Digite o número da linha: '))
@@ -110,10 +110,10 @@ def jogo():
         else:
             liberar_celula(tabu, linha, coluna, tabu_atual)
 
-        liberar_celula = sum(row.count(' ') for row in tabu_atual)
-        if liberar_celula == linhas * colunas - minas:
-            print('Parabéns, você ganhou!')
-            niveis_tabuleiro(tabu, revelar_minas=True)
+        celulas_reveladas = sum(row.count(' ') for row in tabu_atual)
+        if celulas_reveladas == linhas * colunas - minas:
+            print("Parabéns! Você ganhou!")
+            niveis_tabuleiro(nivel, tabu, revelar_minas=True)
             break
 
 if __name__ == "__main__":
