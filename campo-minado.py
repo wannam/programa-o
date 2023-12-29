@@ -1,7 +1,7 @@
 
 import random
 
-def tabuleiro(linhas, colunas, minas):
+def tabu_jogo(linhas, colunas, minas):
     tabu = [[' ' for _ in range(colunas)] for _ in range(linhas)]
     local_minas(tabu, minas)
     valor_dicas(tabu)
@@ -62,28 +62,19 @@ def jogo():
     print('1 - Fácil')
     print('2 - Médio')
     print('3 - Difícil')
+    nivel = int(input('Escolha uma dificuldade: '))
 
-    nivel = int(input('Escolha a dificuldade: '))
+    while 1 >= nivel >= 3:
+        nivel = int(input('Opção inválida, tente novamente: '))
+        continue
+    if nivel == 1:
+        tabu = tabu_jogo(8,8,3)
+    if nivel == 2:
+        tabu = tabu_jogo(7,7,5)
+    if nivel == 3:
+        tabu= tabu_jogo(6,6,8)
 
-    for nivel in range(0, 4):
-        if 1 >= nivel >= 3:
-            nivel = int(input('Opção inválida, tente novamente: '))
-        if nivel == 1:
-            linhas = 8
-            colunas = 8
-            minas = 3
-        elif nivel == 2:
-            linhas = 7
-            colunas = 7
-            minas = 5
-        elif nivel == 3:
-            linhas = 6
-            colunas = 6
-            minas = 8
-
-    tabu = tabuleiro(linhas, colunas, minas)
-    tabu_atual = [[' ' for _ in range(colunas)] for _ in range(linhas)]
-
+    
 
     while True:
         
