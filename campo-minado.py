@@ -19,8 +19,8 @@ def niveis_tabuleiro(nivel, tabu, revelar_minas=False):
         print("  | 0 1 2 3 4 5")
         print("--+------------")
 
-        for i, linha in enumerate(tabu):
-            print(f"{i} | {' '.join(str(celula) if celula != 'X' or revelar_minas else ' ' for celula in linha)}")
+    for i, linha in enumerate(tabu):
+        print(f"{i} | {' '.join(str(celula) if celula != 'X' or revelar_minas else ' ' for celula in linha)}")
 
 def local_minas(tabu, minas):
     minas_adicionadas = 0
@@ -63,22 +63,34 @@ def jogo():
     print('2 - Médio')
     print('3 - Difícil')
     nivel = int(input('Escolha uma dificuldade: '))
+    colunas = 0
+    linhas = 0
+    minas = 0
 
     while 1 >= nivel >= 3:
         nivel = int(input('Opção inválida, tente novamente: '))
         continue
     if nivel == 1:
-        tabu = tabu_jogo(8,8,3)
+        colunas = 8
+        linhas = 8
+        minas = 3
+        tabu = tabu_jogo(linhas, colunas, minas)
     if nivel == 2:
-        tabu = tabu_jogo(7,7,5)
+        colunas = 7
+        linhas = 7
+        minas = 5
+        tabu = tabu_jogo(linhas, colunas, minas)
     if nivel == 3:
-        tabu= tabu_jogo(6,6,8)
+        colunas = 6
+        linhas = 6
+        minas = 8
+        tabu= tabu_jogo(linhas, colunas, minas)
 
-    
+    tabu_atual = [[' ' for _ in range(colunas)] for _ in range(linhas)]
 
     while True:
-        
-        niveis_tabuleiro(tabu_atual)
+
+        niveis_tabuleiro(nivel, tabu, revelar_minas=True)
 
         try:
             linha = int(input('Digite o número da linha: '))
@@ -93,7 +105,7 @@ def jogo():
 
         if tabu[linha][coluna] == 'X':
             print('GAME OVER')
-            niveis_tabuleiro(tabu, revelar_minas=True)
+            niveis_tabuleiro(nivel, tabu, revelar_minas=True)
             break
         else:
             liberar_celula(tabu, linha, coluna, tabu_atual)
