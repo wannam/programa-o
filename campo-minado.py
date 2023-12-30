@@ -2,7 +2,7 @@
 import random
 
 def tabu_jogo(linhas, colunas):
-    tabu = [['-' for _ in range(linhas)] for _ in range(colunas)]
+    tabu = [['*' for _ in range(linhas)] for _ in range(colunas)]
     return tabu
 
 
@@ -20,7 +20,7 @@ def niveis_tabuleiro(nivel, tabu, revelar_minas=False):
         print(f'{i} |', end=' ')
         for j in range(len(tabu)):
             if tabu[i][j] == 'X' and not revelar_minas:
-                print('-', end=' ')
+                print('*', end=' ')
             else:
                 print(tabu[i][j], end=' ')
         print()
@@ -47,24 +47,32 @@ def liberar_celula(tabu, linha, coluna, tabu_revelado, linhas, colunas):
     if tabu[linha][coluna] == 'X':
         print('Você perdeu! Uma mina foi detonada.')
         return True
-    elif tabu_revelado[linha][coluna] > 0:
-        print('Esta célula já foi revelada. Escolha outra.')
-    else:
+    minas_reveladas = [(linha, coluna)]
+    
+    while minas_reveladas:
+        linha, coluna = minas_reveladas.pop()
+        
+        if tabu_revelado[linha][coluna]:
+            continue
+            
         minas_vizinhas = valor_minas_vizinhas(tabu, linha, coluna, linhas, colunas)
         tabu_revelado[linha][coluna] = True
         tabu[linha][coluna] = str(minas_vizinhas) if minas_vizinhas > 0 else '-'
+
         if minas_vizinhas == 0:
             for i in range(max(0, linha - 1), min(linhas, linha + 2)):
                 for j in range(max(0, coluna - 1), min(colunas, coluna + 2)):
-                    liberar_celula(tabu, i, j, tabu_revelado, linhas, colunas)
-    return False
+                    minas_reveladas.append((i, j))
 
-def revela_bombas(tabu, linhas, colunas):
+    return tabu[linha][coluna] == 'X'
+
+
+def verifica_vitoria(tabu, tabu_revelado, linhas, colunas):
     for i in range(linhas):
         for j in range(colunas):
-            if tabu[i][j] == 'X':
-                tabu[i][j] = '*'
-    print(tabu)
+            if tabu[i][j] != 'X' and not tabu_revelado[i][j]:
+                return False
+    return True
 
 
 def jogo():
@@ -113,16 +121,20 @@ def jogo():
             continue
 
         if 0 <= linha < linhas and 0 <= coluna < colunas:
-            final_de_jogo = liberar_celula(tabu, linha, coluna, tabu_revelado, linhas, colunas)
-            if not final_de_jogo:
-                todas_reveladas = all(all(revelado or valor == 'X' for revelado, valor in zip(linha_revelado, linha_tabuleiro))
-                                      for linha_revelado, linha_tabuleiro in zip(tabu_revelado, tabu))
-                if todas_reveladas:
-                    print('Parabéns! Você venceu!')
-            elif final_de_jogo:
-                revela_bombas(tabu, linhas, colunas)
+            if not tabu_revelado[linha][coluna]:
+                final_de_jogo = liberar_celula(tabu, linha, coluna, tabu_revelado, linhas, colunas)
+            else:
+                print('Esta célula já foi revelada. Escolha outra.')
         else:
             print('Posição inválida. Tente novamente.')
+
+        if verifica_vitoria(tabu, tabu_revelado, linhas, colunas):
+            print('Parabéns! Você venceu!')
+            final_de_jogo = True
+
+        niveis_tabuleiro(nivel, tabu, revelar_minas=True)
+
+        
 
 if __name__ == "__main__":
     jogo()
