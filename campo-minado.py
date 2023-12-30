@@ -2,7 +2,7 @@
 import random
 
 def tabu_jogo(linhas, colunas):
-    tabu = [[' ' for _ in range(linhas)] for _ in range(colunas)]
+    tabu = [['-' for _ in range(linhas)] for _ in range(colunas)]
     return tabu
 
 
@@ -18,9 +18,9 @@ def niveis_tabuleiro(nivel, tabu, revelar_minas=False):
         print('  -------------')
     for i in range(len(tabu)):
         print(f'{i} |', end=' ')
-        for j in range(len(tabu)-1):
+        for j in range(len(tabu)):
             if tabu[i][j] == 'X' and not revelar_minas:
-                print(' ', end=' ')
+                print('-', end=' ')
             else:
                 print(tabu[i][j], end=' ')
         print()
@@ -52,7 +52,7 @@ def liberar_celula(tabu, linha, coluna, tabu_revelado, linhas, colunas):
     else:
         minas_vizinhas = valor_minas_vizinhas(tabu, linha, coluna, linhas, colunas)
         tabu_revelado[linha][coluna] = True
-        tabu[linha][coluna] = str(minas_vizinhas) if minas_vizinhas > 0 else ' '
+        tabu[linha][coluna] = str(minas_vizinhas) if minas_vizinhas > 0 else '-'
         if minas_vizinhas == 0:
             for i in range(max(0, linha - 1), min(linhas, linha + 2)):
                 for j in range(max(0, coluna - 1), min(colunas, coluna + 2)):
