@@ -132,22 +132,11 @@ def jogo():
             print('Parabéns! Você venceu!')
             final_de_jogo = True
 
-        niveis_tabuleiro(nivel, tabu, revelar_minas=True)
+    niveis_tabuleiro(nivel, tabu, revelar_minas=True)
 
         
 
 if __name__ == "__main__":
     jogo()
-
-
-    
-   
-
-
-
-
-
-
-        
 
 
