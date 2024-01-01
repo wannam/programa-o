@@ -17,16 +17,25 @@ def menu():
     print("D - Jogo da forca")
     print("E - Jogo do campo de minas")
 
-def selecionar_jogo(opcao):
-    jogos = {
-        'A': jogo_galo,
-        'B': jogo_quatro_linha,
-        'C': jogo_da_gloria,
-        'D': jogo_da_forca,
-        'E': jogo_campo_minado
-    }
+def selecionar_jogo(escolha):
+
+    if escolha == 'A':
+            print('Escolheu o jogo do galo. Vamos começar.')
+            jogo = jogo_galo
+    elif escolha == 'B':
+            print('Escolheu o jogo 4 em linha. Vamos começar.')
+            jogo = jogo_quatro_linha
+    elif escolha == 'C':
+            print('Escolheu o jogo da gloria. Vamos começar.')
+            jogo = jogo_da_gloria
+    elif escolha == 'D':
+            print('Escolheu o Jogo da forca. Vamos começar.')
+            jogo = jogo_da_forca
+    elif escolha == 'E':
+            print('Escolheu o Jogo do campo de minas. Vamos começar.')
+            jogo = jogo_campo_minado
     
-    return jogos.get(opcao, None)
+    return jogo
 
 if __name__ == "__main__":
     while True:
@@ -36,7 +45,6 @@ if __name__ == "__main__":
         jogo_selecionado = selecionar_jogo(escolha)
 
         if jogo_selecionado:
-            print(f"Escolheu o jogo {escolha}. Vamos começar.")
             jogo_selecionado()
         else:
             print("Opção inválida. Tente novamente.")
