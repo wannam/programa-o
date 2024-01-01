@@ -40,7 +40,7 @@ def mostrar_forca(tentativas_restantes):
         forca = boneco[6]
     return forca
 
-def jogar_jogo_da_forca():
+def jogar_jogo():
     palavra_secreta = escolher_palavra()
     letras_adivinhadas = []
     letras_erradas = []
@@ -78,4 +78,5 @@ def jogar_jogo_da_forca():
     if '_' in exibir_palavra_oculta(palavra_secreta, letras_adivinhadas):
         print("GAME OVER. A palavra era:", palavra_secreta)
         
-#jogar_jogo_da_forca()
+if __name__ == "__main__":
+    jogar_jogo()

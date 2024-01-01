@@ -75,7 +75,7 @@ def verifica_vitoria(tabu, tabu_revelado, linhas, colunas):
     return True
 
 
-def jogar_campo_minado():
+def jogar_jogo():
 
     print('1 - Fácil')
     print('2 - Médio')
@@ -133,6 +133,7 @@ def jogar_campo_minado():
             final_de_jogo = True
 
     niveis_tabuleiro(nivel, tabu, revelar_minas=True)
-#jogar_campo_minado()
-
+    
+if __name__ == "__main__":
+    jogar_jogo()
 

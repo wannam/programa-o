@@ -4,7 +4,7 @@
 #ex4
 
 
-def jogar_jogo_do_galo():
+def jogar_jogo():
     tabu = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
     jogo = True
     jogadores = '1'
@@ -77,7 +77,9 @@ def jogar_jogo_do_galo():
         else:
             simb = 'X'
             jogadores = '1'
-#jogar_jogo_do_galo()
+
+if __name__ == "__main__":
+    jogar_jogo()
 
         
 

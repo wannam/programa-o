@@ -11,7 +11,7 @@ resultado = None
 simb = ' X '
 
 
-def jogar_quatro_linha(): 
+def jogar_jogo(): 
     tabu = [[' - ' for _ in range(7)] for _ in range(7)]
     jogo = True
     jogadores = '1'
@@ -84,4 +84,5 @@ def jogar_quatro_linha():
             simb = ' X '
             jogadores = '1'
 
-#jogar_quatro_linha()
+if __name__ == "__main__":
+    jogar_jogo()

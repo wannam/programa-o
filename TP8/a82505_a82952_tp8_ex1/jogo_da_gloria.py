@@ -40,7 +40,7 @@ def duplicacao(posicao):
     print(f"Avance o dobro do valor que saiu no dado: {2 * dado} posições.")
     return posicao + 2 * dado
 
-def jogar_jogo_da_gloria():
+def jogar_jogo():
     N_jogadores = int(input('insira a quatidade de jogadores: '))
     while not 2 <= N_jogadores <= 4:
         N_jogadores = int(input('Quantidade inválida. Digite novamente: '))
@@ -76,5 +76,7 @@ def jogar_jogo_da_gloria():
         turno = (turno + 1) % N_jogadores
 
     print(f"\nJogador {posicoes.index(max(posicoes)) + 1} venceu o Jogo da Glória!")
-#jogar_jogo_da_gloria()
+    
+if __name__ == "__main__":
+    jogar_jogo()
  
