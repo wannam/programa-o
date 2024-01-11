@@ -1,7 +1,7 @@
 #a82505
 #a82952
-#tp4
-#ex4
+#tp8
+#ex1
 
 
 def jogar_jogo():

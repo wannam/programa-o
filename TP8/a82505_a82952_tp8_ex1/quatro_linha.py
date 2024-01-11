@@ -1,7 +1,7 @@
 #a82505
 #a82952
-#tp4
-#ex5
+#tp8
+#ex1
 
 
 tabu = [[' - ' for _ in range(7)] for _ in range(7)]

@@ -1,6 +1,7 @@
 #a82505
 #a82952
-#tp7
+#tp8
+#ex1
 
 import random
 
